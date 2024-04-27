@@ -11,5 +11,5 @@ app.use("/api/products", productsRoutes);
 app.use("/api/carts", cartsRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server listening on https://localhost:${PORT}`);
+  console.log(`Server listening on http://localhost:${PORT}`);
 });

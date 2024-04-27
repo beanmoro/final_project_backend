@@ -24,7 +24,7 @@ export class CartManager {
     try {
       const cartsFile = await fs.promises.readFile(this.#path, "utf-8");
       const cartsArray = JSON.parse(cartsFile);
-      const cart = cartsArray.find((c) => (c.id = cid));
+      const cart = cartsArray.find((c) => (c.id == cid));
       if (!cart) {
         throw new Error("Cart not found!");
       }
@@ -41,20 +41,20 @@ export class CartManager {
       let cartFounded = false;
 
       cartsArray.forEach((c) => {
-        if (c.id === cid) {
+        if (c.id == cid) {
           cartFounded = true;
 
           let productFounded = false;
 
           c.products.forEach((p) => {
-            if (p.id === pid) {
+            if (p.id == pid) {
               p.quantity += quantity;
               productFounded = true;
             }
           });
 
           if (!productFounded) {
-            c.products.push({ id: pid, quantity: quantity });
+            c.products.push({ id: parseInt(pid), quantity: quantity });
           }
         }
       });
